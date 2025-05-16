@@ -1,4 +1,89 @@
 <!-- ...existing HTML code... -->
+
+<!-- --- Our Menu Page --- -->
+<div id="menu" class="page-section" style="display:none">
+  <div class="max-w-3xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold text-center text-[#33691e] mb-8">Our Menu</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Nyonya Pandan Coffee -->
+      <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-2">Nyonya Pandan Coffee</h3>
+        <div class="flex justify-center mb-3">
+          <!-- Cartoon: Coffee cup with pandan leaf -->
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <ellipse cx="32" cy="48" rx="22" ry="8" fill="#a5d6a7"/>
+            <rect x="18" y="20" width="28" height="24" rx="12" fill="#fffde7" stroke="#8bc34a" stroke-width="2"/>
+            <ellipse cx="32" cy="32" rx="12" ry="6" fill="#a5d6a7"/>
+            <path d="M12 40 Q24 10 32 40" stroke="#388e3c" stroke-width="3" fill="none"/>
+            <path d="M52 40 Q40 10 32 40" stroke="#388e3c" stroke-width="3" fill="none"/>
+          </svg>
+        </div>
+        <p class="mb-2 text-gray-700">Signature blend of coffee with fragrant pandan essence.</p>
+        <span class="font-bold text-green-700">$5.00</span>
+      </div>
+      <!-- Pandan Oat Milk Latte -->
+      <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-2">Pandan Oat Milk Latte</h3>
+        <div class="flex justify-center mb-3">
+          <!-- Cartoon: Latte cup with oat and pandan -->
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <ellipse cx="32" cy="52" rx="20" ry="7" fill="#ffe082"/>
+            <rect x="18" y="24" width="28" height="20" rx="10" fill="#fffde7" stroke="#ffd54f" stroke-width="2"/>
+            <ellipse cx="32" cy="34" rx="10" ry="5" fill="#ffe082"/>
+            <ellipse cx="32" cy="34" rx="6" ry="3" fill="#fffde7" opacity="0.7"/>
+            <rect x="48" y="32" width="6" height="12" rx="3" fill="#a5d6a7" transform="rotate(-20 51 38)"/>
+            <ellipse cx="18" cy="44" rx="3" ry="1.5" fill="#bcaaa4"/>
+          </svg>
+        </div>
+        <p class="mb-2 text-gray-700">Dairy-free, creamy oat milk with pandan and espresso.</p>
+        <span class="font-bold text-green-700">$6.00</span>
+      </div>
+      <!-- Kaya Toast -->
+      <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-2">Kaya Toast</h3>
+        <div class="flex justify-center mb-3">
+          <!-- Cartoon: Kaya toast -->
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <rect x="16" y="32" width="32" height="14" rx="3" fill="#ffe0b2" stroke="#bcaaa4" stroke-width="2"/>
+            <rect x="20" y="36" width="24" height="6" rx="2" fill="#a1887f"/>
+            <rect x="24" y="38" width="16" height="2" rx="1" fill="#81c784"/>
+          </svg>
+        </div>
+        <p class="mb-2 text-gray-700">Traditional toast with homemade kaya and butter.</p>
+        <span class="font-bold text-green-700">$3.50</span>
+      </div>
+      <!-- Nyonya Kueh Platter -->
+      <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-2">Nyonya Kueh Platter</h3>
+        <div class="flex justify-center mb-3">
+          <!-- Cartoon: Colorful kueh pieces -->
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <rect x="14" y="40" width="12" height="8" rx="2" fill="#43a047"/>
+            <rect x="26" y="44" width="12" height="8" rx="2" fill="#f06292"/>
+            <rect x="38" y="40" width="12" height="8" rx="2" fill="#ffd600"/>
+            <ellipse cx="32" cy="36" rx="8" ry="4" fill="#fffde7"/>
+          </svg>
+        </div>
+        <p class="mb-2 text-gray-700">Assorted bite-sized heritage kueh, perfect for sharing.</p>
+        <span class="font-bold text-green-700">$7.00</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ...existing HTML code... -->
+
+<!-- --- Optimizer/Customizer SVG and Script --- -->
+<!-- In your SVG for the customizer, make sure drink-fill always touches milk-surface: -->
+<div id="cup-preview" class="relative w-32 h-48 mb-4">
+  <svg viewBox="0 0 80 120" class="w-full h-full">
+    <rect x="15" y="30" width="50" height="70" rx="20" fill="#e0e0e0" />
+    <rect id="drink-fill" x="20" width="40" height="30" rx="10" fill="#a5d6a7" />
+    <ellipse id="milk-surface" cx="40" rx="18" ry="7" fill="#fffde7" opacity="0.7"/>
+    <circle id="addon-dot" cx="40" cy="90" r="4" fill="#795548" opacity="0"/>
+  </svg>
+  <div id="addon-icons" class="absolute left-1/2 -translate-x-1/2 top-2 flex space-x-2"></div>
+</div>
+
 <script>
   // --- SPA Navigation ---
   function showPage(pageId) {
