@@ -1,0 +1,112 @@
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+
+export default function NyonyaPandanCoffeePage() {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+  const [openQuestion, setOpenQuestion] = useState(null);
+
+  const handleSubscribe = () => {
+    if (email) setSubscribed(true);
+  };
+
+  const toggleQuestion = (index) => {
+    setOpenQuestion(openQuestion === index ? null : index);
+  };
+
+  const questions = [
+    {
+      question: 'What is pandan coffee?',
+      answer: 'Pandan coffee is a unique blend of traditional coffee infused with natural pandan essence, offering a fragrant, slightly sweet aroma reminiscent of local heritage desserts.'
+    },
+    {
+      question: 'Where can I find your coffee?',
+      answer: 'We operate pop-up stalls on weekends at Bukit Timah Nature Reserve and a weekday kiosk near Beauty World MRT.'
+    },
+    {
+      question: 'Do you offer dairy-free options?',
+      answer: 'Yes! We offer pandan oat milk lattes and other dairy-free choices to suit your lifestyle.'
+    }
+  ];
+
+  return (
+    <div className="bg-white text-[#004d40] font-serif min-h-screen">
+      <div className="flex flex-col items-center justify-center max-w-6xl mx-auto px-6 py-12 space-y-8">
+        <div className="w-full bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url('/mnt/data/59a389f1-df11-4a5d-8dd0-6162ca59562e.png')" }}>
+          <img
+            src="https://u1.padletusercontent.com/uploads/padlet-uploads/3841003996/44836a2ad632735782f6c8896e08d11e/image.png?token=QJ5t0cp1CD6td7LejjKyujEgb98yFkViwgFlIUEjsJLPsmJDCc79fgLSFabTj3MHo3agy6CiHB8FHgGERnYXZYm4cV9BhQCX0upI-jKL_9Enk29mVVjhZ9e3c9Y7LPxb-QV4DuUIQYsNsKprYn9fdboZwgh8Cf1fzWYa6vklq1lBQIOMFBenbl8l1w7n38GdYH1krEN4-59slpOstHm0qFWFGJ-HcQV1MyNQZ7HOBck="
+            alt="Nyonya Pandan Banner"
+            className="w-full max-w-lg mx-auto h-auto object-contain"
+          />
+        </div>
+
+        <div className="w-full md:w-1/2 mt-10 md:mt-0">
+          <p className="text-center text-3xl font-extrabold text-[#1b5e20] mb-8 tracking-wide uppercase">Heritage in Every Sip – The Little Nyonya</p>
+          <h2 className="text-2xl font-bold text-[#33691e] mb-4">The Nyonya Pandan Coffee Story</h2>
+          <p className="mb-6 text-base leading-relaxed">
+            There’s always that special place in the areas we live. By habit or necessity, there are checkpoints where our paths converge, no matter where our days take us.
+          </p>
+          <p className="mb-6 text-base leading-relaxed">
+            These are the places where shared moments and experiences connect us — and they eventually come to mean far more than the function it serves. A café doesn’t merely dispense coffee. Neither does a bakery simply cook flour and put them on sale.
+          </p>
+          <p className="mb-6 text-base leading-relaxed">
+            They are strongholds founded deep in the history of the area they dwell, built upon with stories shared within and around its walls. Where perspectives are challenged, broadened, renewed; and the future can be boldly envisioned with insight and belief.
+          </p>
+          <p className="mb-6 text-base leading-relaxed">
+            This unique confluence of community drives us to excellence and new levels of inspiration in everything we do.
+          </p>
+          <div className="text-center">
+            <p className="text-2xl font-bold mb-2">Order our signature Nyonya Pandan Coffee now</p>
+            <button onClick={() => window.location.href='https://chatgpt.com/canvas/shared/6825bbb2e8b08191be6d7b825ab4f9a2'} className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full shadow-md text-lg font-bold mx-auto block">$10</button>
+          </div>
+          <div className="h-8"></div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 pb-12">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Common Questions</h2>
+        <div className="space-y-4">
+          {questions.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => toggleQuestion(index)}
+              className="cursor-pointer border border-gray-300 rounded p-4 hover:bg-gray-50"
+            >
+              <div className="font-semibold">{item.question}</div>
+              {openQuestion === index && (
+                <div className="mt-2 text-sm text-gray-600">{item.answer}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-2xl mx-auto px-6 pb-24 text-center">
+        <h2 className="text-xl font-semibold mb-2">Stay in the loop</h2>
+        <p className="mb-4 text-gray-700">Subscribe to get updates on new drinks, locations, and heritage stories.</p>
+        <div className="flex items-center justify-center space-x-2">
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full max-w-xs"
+          />
+          <Button onClick={handleSubscribe} className="bg-green-700 hover:bg-green-800 text-white">Subscribe</Button>
+        </div>
+        {subscribed && <p className="text-sm text-green-700 mt-2">Thanks for subscribing!</p>}
+      </div>
+
+      <div className="max-w-2xl mx-auto px-6 pb-12 text-center">
+        <h2 className="text-xl font-semibold mb-2">Outlet</h2>
+        <p className="text-gray-700 mb-1">Address: 10 Pasir Panjang Rd, #03-01 Mapletree Business City, Singapore 117438</p>
+        <p className="text-gray-700">Operating Hours: 8.30am to 6:00pm</p>
+      </div>
+
+      <footer className="bg-green-900 text-center text-sm text-white py-6 mt-8">
+        © 2025 Nyonya Pandan Coffee — A Sip of Heritage
+      </footer>
+    </div>
+  );
+}
