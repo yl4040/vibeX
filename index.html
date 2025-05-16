@@ -90,6 +90,7 @@
     document.querySelectorAll('.page-section').forEach(section => section.style.display = 'none');
     document.getElementById(pageId).style.display = 'block';
     window.scrollTo(0,0);
+    if (pageId === 'customizer') initCustomizer();
   }
   window.onload = function() {
     showPage('home');
@@ -191,5 +192,11 @@
       }
     }
   });
+
+  function initCustomizer() {
+    const form = document.getElementById('drink-customizer');
+    if (!form) return;
+    // ...rest of your customizer logic...
+  }
 </script>
 <!-- ...existing HTML code... -->
