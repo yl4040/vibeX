@@ -389,9 +389,9 @@
         <div id="cup-preview" class="relative w-32 h-48 mb-4">
           <!-- SVG Cup Preview -->
           <svg viewBox="0 0 80 120" class="w-full h-full">
-            <!-- Cup body (drawn first, so drink-fill overlays it) -->
+            <!-- Cup body (drawn first) -->
             <rect x="15" y="30" width="50" height="70" rx="20" fill="#e0e0e0" />
-            <!-- Drink fill overlays cup body -->
+            <!-- Drink fill overlays cup body, always touches bottom of cup -->
             <rect id="drink-fill" x="20" width="40" height="30" rx="10" fill="#a5d6a7" />
             <!-- Milk swirl overlays drink fill -->
             <ellipse id="milk-surface" cx="40" rx="18" ry="7" fill="#fffde7" opacity="0.7"/>
@@ -510,7 +510,6 @@
 
       function updatePreview() {
         if (!form) return;
-        // Cup size
         var size = form.size.value;
         var milkType = form.milk.value;
         var sugar = form.sugar.value;
@@ -520,33 +519,29 @@
         let drinkColor = milkType === 'Oat' ? '#ffe082' : '#a5d6a7';
         fill.setAttribute('fill', drinkColor);
 
-        // Set milk surface and drink fill positions so drink-fill always touches milk-surface
-        let milkCy, fillY, fillH;
+        // Cup body: y=30, height=70, so bottom is at y=100
+        // We'll set drink-fill's y and height so its bottom edge is always at y=100
+        let fillH, fillY, milkCy;
         if (size === 'Small') {
-          milkCy = 100;
-          fillY = milkCy;
-          fillH = 10;
+          fillH = 15;
         } else if (size === 'Medium') {
-          milkCy = 90;
-          fillY = milkCy;
-          fillH = 20;
-        } else { // Large
-          milkCy = 80;
-          fillY = milkCy;
           fillH = 30;
+        } else { // Large
+          fillH = 50;
         }
-        milk.setAttribute('cy', milkCy);
+        fillY = 100 - fillH; // so bottom edge is always at y=100
         fill.setAttribute('y', fillY);
         fill.setAttribute('height', fillH);
 
-        // Milk surface color
+        // Milk surface sits at the top edge of the drink
+        milkCy = fillY;
+        milk.setAttribute('cy', milkCy);
+
         milk.setAttribute('fill', milkType === 'Oat' ? '#fffde7' : '#fff');
         milk.setAttribute('opacity', milkType === 'black' ? '0' : '0.7');
 
-        // Add-ons: show dot if any
         addonDot.setAttribute('opacity', addons.length ? '1' : '0');
 
-        // Add-on icons
         addonIcons.innerHTML = '';
         if (addons.includes('Gula Melaka Drizzle')) {
           addonIcons.innerHTML += '<span title="Gula Melaka"><svg width="24" height="24"><circle cx="12" cy="12" r="8" fill="#8d5524"/></svg></span>';
@@ -558,7 +553,6 @@
           addonIcons.innerHTML += '<span title="Espresso Shot"><svg width="24" height="24"><ellipse cx="12" cy="12" rx="8" ry="4" fill="#3e2723"/></svg></span>';
         }
 
-        // Summary
         summary.textContent =
           size + " cup, " +
           milkType + " milk, " +
@@ -570,7 +564,6 @@
         updatePreview();
       }
 
-      // Save My Blend
       if (saveBtn) {
         saveBtn.onclick = function() {
           saveMsg.classList.remove('hidden');
