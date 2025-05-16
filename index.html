@@ -389,14 +389,16 @@
         <div id="cup-preview" class="relative w-32 h-48 mb-4">
           <!-- SVG Cup Preview -->
           <svg viewBox="0 0 80 120" class="w-full h-full">
-            <!-- Cup body -->
+            <!-- Cup body (drawn first, so drink-fill overlays it) -->
             <rect x="15" y="30" width="50" height="70" rx="20" fill="#e0e0e0" />
-            <!-- Drink fill (dynamic) -->
+            <!-- Drink fill overlays cup body -->
             <rect id="drink-fill" x="20" width="40" height="30" rx="10" fill="#a5d6a7" />
-            <!-- Milk swirl (dynamic) -->
+            <!-- Milk swirl overlays drink fill -->
             <ellipse id="milk-surface" cx="40" rx="18" ry="7" fill="#fffde7" opacity="0.7"/>
             <!-- Add-ons (dynamic) -->
             <circle id="addon-dot" cx="40" cy="90" r="4" fill="#795548" opacity="0"/>
+            <!-- Cup outline for visual clarity (optional) -->
+            <rect x="15" y="30" width="50" height="70" rx="20" fill="none" stroke="#bdbdbd" stroke-width="2"/>
           </svg>
           <!-- Add-on icons -->
           <div id="addon-icons" class="absolute left-1/2 -translate-x-1/2 top-2 flex space-x-2"></div>
